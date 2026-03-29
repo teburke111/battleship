@@ -1,22 +1,18 @@
 const express = require("express");
-const http = require("http");
-const { Server } = require("socket.io");
-const cors = require("cors");
-
 const app = express();
-app.use(cors());
 
-const server = http.createServer(app);
+const PORT = 5000;
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
+// Test route
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Server is working!" });
 });
 
-const PORT = process.env.PORT || 8080;
+// Root route (optional)
+app.get("/", (req, res) => {
+  res.send("Hello from Node!");
+});
 
-server.listen(PORT, () => {
-  console.log(`Server running.`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
