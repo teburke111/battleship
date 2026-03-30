@@ -13,8 +13,6 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
 
 ## Build Process
 
-This project will be containerized using Docker using lightweight Alpine-based images:
-
 - **Client:**  
   - `FROM node:18`
     - Base image provides Node.js 18 and npm pre-installed.
@@ -52,8 +50,6 @@ This project will be containerized using Docker using lightweight Alpine-based i
     - Declares backend port for communication with frontend.
   - `CMD ["node", "index.js"]`
     - Runs the main backend server file.
-
-Using Alpine images reduces container size and improves startup performance while maintaining full Node.js functionality.
 
 ---
 
