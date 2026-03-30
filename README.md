@@ -51,6 +51,8 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
   - `CMD ["node", "index.js"]`
     - Runs the main backend server file.
 
+- Running `docker compose up --build` runs the React frontend and Node.js backend in separate containers with mapped ports, allowing them to communicate internally and be accessed externally from a browser.
+
 ---
 
 ## Networking
