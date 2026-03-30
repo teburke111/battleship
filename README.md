@@ -15,7 +15,7 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
 
 This project will be containerized using Docker using lightweight Alpine-based images:
 
-- **Frontend:**  
+- **Client:**  
   - `FROM node:18`
     - Base image provides Node.js 18 and npm pre-installed.
     - Chosen because React development requires Node.js, and Node 18 is stable and supported.
@@ -36,9 +36,22 @@ This project will be containerized using Docker using lightweight Alpine-based i
     - Default command to run when the container starts.
     - Launches the React development server.
 
-- **Backend:**  
-  - `node:alpine`  
-  - Runs the Express server and Socket.IO for real time communication
+- **Server:**  
+  - `FROM node:18`
+    - Provides Node.js 18 for running server.
+    - Chosen for stability and compatibility with Express.
+  - `WORKDIR /app`
+    - Sets /app as the working directory.
+  - `COPY package*.json ./`
+    - Copies package definitions first for caching.
+  - `RUN npm install`
+    - Installs backend dependencies.
+  - `COPY . .`
+    - Copies the full backend source code.
+  - `EXPOSE 5000`
+    - Declares backend port for communication with frontend.
+  - `CMD ["node", "index.js"]`
+    - Runs the main backend server file.
 
 Using Alpine images reduces container size and improves startup performance while maintaining full Node.js functionality.
 
