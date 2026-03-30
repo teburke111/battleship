@@ -1,4 +1,4 @@
-## Vision
+## Architecture
 
 <img width="1940" height="1140" alt="BattleShipDiagram" src="https://github.com/user-attachments/assets/2e3132dc-6560-4eab-91c3-e53464e5f0fe" />
 
@@ -11,7 +11,7 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
 
 ---
 
-## Proposal
+## Build Process
 
 This project will be containerized using Docker using lightweight Alpine-based images:
 
@@ -54,4 +54,26 @@ This project will be containerized using Docker using lightweight Alpine-based i
     - Runs the main backend server file.
 
 Using Alpine images reduces container size and improves startup performance while maintaining full Node.js functionality.
+
+---
+
+## Networking
+
+- Docker Compose automatically creates a **bridge network** for all services defined in the `docker-compose.yml` file.
+- Containers on the same network can communicate using their **service names** as hostnames.  
+
+  For example:
+  - React frontend can call the Node backend at:  
+    ```text
+    http://server:5000/api/test
+    ```
+    Here, `server` is the **service name** defined in `docker-compose.yml`.
+
+- Docker handles **internal DNS resolution**, so you don’t need to use IP addresses.  
+- Ports exposed in the Dockerfiles (`3000` for React, `5000` for Node) are mapped to host ports via `docker-compose.yml`:
+
+```yaml
+ports:
+  - "3000:3000"  # React frontend
+  - "5000:5000"  # Node backend
 
