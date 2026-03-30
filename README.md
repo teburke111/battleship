@@ -68,11 +68,12 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
 - Docker handles **internal DNS resolution**, so you don’t need to use IP addresses.  
 - Ports exposed in the Dockerfiles (`3000` for React, `5000` for Node) are mapped to host ports via `docker-compose.yml`:
 
+
 **External access (in browser):**  
   You can access your containers from a browser using the hostname and the mapped ports defined in `docker-compose.yml`.
 
   For example:
-  - React frontend can call the Node backend at:  
+  - User can access React frontend from browser using:  
     ```text
     http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/
     ```
