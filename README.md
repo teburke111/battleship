@@ -91,16 +91,16 @@ ports:
 
 ## Instructions
 
-# 1. **Start a CloudLab Experiment**
+1. **Start a CloudLab Experiment**
 
 Before running this project, you must create and start a CloudLab experiment using profile.py from this repo. Once the experiment is ready SSH into the experiment.
 
-# 2. **Clone the repository:**
+2. **Clone the repository:**
 ```bash
 git clone https://github.com/teburke111/Verus.git
 ```
 
-# 3. **Change into project directory:**
+3. **Change into project directory:**
 ```bash
 cd BattleShip
 ```
