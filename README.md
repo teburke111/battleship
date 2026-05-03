@@ -2,12 +2,7 @@
 
 <img width="1940" height="1140" alt="BattleShipDiagram" src="https://github.com/user-attachments/assets/2e3132dc-6560-4eab-91c3-e53464e5f0fe" />
 
-This project is a full stack web application composed of two components: a **React frontend** (client) and a **Node.js backend** (server).
-
-- **REST API (HTTP)** — Used for standard request/response operations such as fetching data and performing CRUD actions, handled by Express.
-- **WebSockets (Socket.IO)** — Used for real time, communication to enable live updates and decisions between players.
-
-The Node.js backend uses **Express** to expose REST API endpoints and **Socket.IO** to manage game connections.
+This project is a full stack web application composed of two main components, a React frontend and a Node.js backend. The frontend is handles all client side interactions, while the backend manages creating users, users boards, player communication, and game processes. The backend is built using Express, which exposes REST API endpoints creating game boards using an ship place algorithm, adding users, and also test apis used during development. In addition to the REST API, the backend also uses Socket.IO to enable real time communication between clients, allowing for live updates and interactive gameplay decisions between players. Together, these components are built into docker containers, which are then pushed into dockerhub where the images can be pulled for the build process below.
 
 ---
 
@@ -51,7 +46,7 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
   - `CMD ["node", "index.js"]`
     - Runs the main backend server file.
 
-- Running `docker compose up --build` runs the React frontend and Node.js backend in separate containers with mapped ports, allowing them to communicate internally and be accessed externally from a browser.
+- Running `startup.sh` starts the entire application automatically by executing `docker compose up --build`. Instead of building everything locally, the system pulls prebuilt Docker images from Docker Hub and uses them to create and run the React frontend and Node.js backend in separate containers. These containers have their ports mapped so they can communicate internally through Docker networking while still being accessible externally through a web browser.
 
 ---
 
@@ -97,7 +92,7 @@ Before running this project, you must create and start a CloudLab experiment usi
 
 2. **Clone the repository:**
 ```bash
-git clone https://github.com/teburke111/Verus.git
+git clone https://github.com/teburke111/BattleShip.git
 ```
 
 3. **Change into project directory:**
