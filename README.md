@@ -85,6 +85,7 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
 ports:
   - "3000:3000"  # React frontend
   - "5000:5000"  # Node backend
+```
 
 ---
 
