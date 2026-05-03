@@ -2,6 +2,8 @@
 
 <img width="1940" height="1140" alt="BattleShipDiagram" src="https://github.com/user-attachments/assets/2e3132dc-6560-4eab-91c3-e53464e5f0fe" />
 
+
+
 This project is a full stack web application composed of two main components, a React frontend and a Node.js backend. The frontend is handles all client side interactions, while the backend manages creating users, users boards, player communication, and game processes. The backend is built using Express, which exposes REST API endpoints creating game boards using an ship place algorithm, adding users, and also test apis used during development. In addition to the REST API, the backend also uses Socket.IO to enable real time communication between clients, allowing for live updates and interactive gameplay decisions between players. Together, these components are built into docker containers, which are then pushed into dockerhub where the images can be pulled for the build process below.
 
 ---
