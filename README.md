@@ -72,7 +72,7 @@ ports:
 
 1. **Start a CloudLab Experiment**
 
-Before running this project, you must create and start a CloudLab experiment using profile.py from this repo. Once the experiment is ready SSH into the experiment.
+Before running this project, you must create and start a CloudLab experiment using `profile.py`. Once the experiment is ready SSH into the experiment.
 
 2. **Clone the repository:**
 ```bash
