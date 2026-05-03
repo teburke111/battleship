@@ -54,29 +54,13 @@ This project is a full stack web application composed of two main components, a 
 
 ## Networking
 
-- Docker Compose automatically creates a **bridge network** for all services defined in the `docker-compose.yml` file.
-- Containers on the same network can communicate using their **service names** as hostnames.  
+## Networking
 
-  For example:
-  - React frontend can call the Node backend at:  
-    ```text
-    http://server:5000/api/test
-    ```
-    Here, `server` is the **service name** defined in `docker-compose.yml`.
+Docker Compose automatically creates a bridge network for all services defined in the `docker-compose.yml` file. This allows all containers in the application to communicate with each other internally without any additional configuration. Containers on the same network can use their service names as hostnames, which Docker resolves automatically through its built in DNS system, meaning there is no need to use IP addresses.
 
-- Docker handles **internal DNS resolution**, so you don’t need to use IP addresses.  
-- Ports exposed in the Dockerfiles (`3000` for React, `5000` for Node) are mapped to host ports via `docker-compose.yml`:
+For example, the React frontend can communicate with the Node backend by sending requests to `http://server:5000/api/test`, where `server` is the service name defined in the `docker-compose.yml` file. This internal routing works because Docker Compose ensures that all services are discoverable within the same virtual network.
 
-
-**External access (in browser):**  
-  You can access your containers from a browser using the hostname and the mapped ports defined in `docker-compose.yml`.
-
-  For example:
-  - User can access React frontend from browser using:  
-    ```text
-    http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/
-    ```
-  
+Port mappings defined in `docker-compose.yml` expose container ports to the host machine, allowing external access from a browser. For instance, port `3000` for the React frontend and port `5000` for the Node backend are mapped so that users can access the application outside of Docker. The React frontend can be accessed through a browser using the CloudLab node’s public address, such as `http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/`, while still communicating internally with the backend service.
 
 ```yaml
 ports:
