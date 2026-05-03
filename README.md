@@ -56,9 +56,9 @@ This project is a full stack web application composed of two main components, a 
 
 ## Networking
 
-Docker Compose automatically creates a bridge network for all services in the `docker-compose.yml` file, allowing containers to communicate with each other internally. Services can reference each other using their service names as hostnames, with Docker handling internal DNS resolution so no IP addresses are needed.
+- Docker Compose automatically creates a bridge network for all services in the `docker-compose.yml` file, allowing containers to communicate with each other internally. Services can reference each other using their service names as hostnames, with Docker handling internal DNS resolution so no IP addresses are needed.
 
-Ports defined in `docker-compose.yml` expose the containers to the host machine, enabling external browser access. The React frontend runs on port `3000` and can be accessed through the CloudLab node’s public URL, such as `http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/`, while still communicating internally with the backend.
+- Ports defined in `docker-compose.yml` expose the containers to the host machine, enabling external browser access. The React frontend runs on port `3000` and can be accessed through the CloudLab node’s public URL, such as `http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/`, while still communicating internally with the backend.
 
 ```yaml
 ports:
