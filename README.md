@@ -86,3 +86,30 @@ ports:
   - "3000:3000"  # React frontend
   - "5000:5000"  # Node backend
 
+---
+
+## Instructions
+
+# 1. Start a CloudLab Experiment
+
+Before running this project, you must create and start a CloudLab experiment using profile.py from this repo. Once the experiment is ready SSH into the experiment.
+
+# 2. Clone the repository:
+```bash
+git clone https://github.com/teburke111/Verus.git
+```
+
+# 3. Change into project directory:
+```bash
+cd BattleShip
+```
+
+4. Run deployment Script
+```bash
+./startup.sh
+```
+
+5. **Access Front End**
+- Access your website at: `http://<NODE_IP>:<NODEPORT>`
+
+
