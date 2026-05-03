@@ -56,11 +56,9 @@ This project is a full stack web application composed of two main components, a 
 
 ## Networking
 
-Docker Compose automatically creates a bridge network for all services defined in the `docker-compose.yml` file. This allows all containers in the application to communicate with each other internally without any additional configuration. Containers on the same network can use their service names as hostnames, which Docker resolves automatically through its built in DNS system, meaning there is no need to use IP addresses.
+Docker Compose automatically creates a bridge network for all services in the `docker-compose.yml` file, allowing containers to communicate with each other internally. Services can reference each other using their service names as hostnames, with Docker handling internal DNS resolution so no IP addresses are needed.
 
-For example, the React frontend can communicate with the Node backend by sending requests to `http://server:5000/api/test`, where `server` is the service name defined in the `docker-compose.yml` file. This internal routing works because Docker Compose ensures that all services are discoverable within the same virtual network.
-
-Port mappings defined in `docker-compose.yml` expose container ports to the host machine, allowing external access from a browser. For instance, port `3000` for the React frontend and port `5000` for the Node backend are mapped so that users can access the application outside of Docker. The React frontend can be accessed through a browser using the CloudLab node’s public address, such as `http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/`, while still communicating internally with the backend service.
+Ports defined in `docker-compose.yml` expose the containers to the host machine, enabling external browser access. The React frontend runs on port `3000` and can be accessed through the CloudLab node’s public URL, such as `http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/`, while still communicating internally with the backend.
 
 ```yaml
 ports:
