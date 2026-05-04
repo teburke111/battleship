@@ -2,12 +2,9 @@
 
 <img width="1940" height="1140" alt="BattleShipDiagram" src="https://github.com/user-attachments/assets/2e3132dc-6560-4eab-91c3-e53464e5f0fe" />
 
-This project is a full stack web application composed of two components: a **React frontend** (client) and a **Node.js backend** (server).
+<br />
 
-- **REST API (HTTP)** — Used for standard request/response operations such as fetching data and performing CRUD actions, handled by Express.
-- **WebSockets (Socket.IO)** — Used for real time, communication to enable live updates and decisions between players.
-
-The Node.js backend uses **Express** to expose REST API endpoints and **Socket.IO** to manage game connections.
+This project is a full stack web application composed of two main components, a React frontend and a Node.js backend. The frontend was built using React and handles all client side interactions, while the backend works with creating users and game boards plus handling player communication and the game process. The backend is built using Express, which exposes REST API endpoints creating game boards using an ship place algorithm, adding users, and also test apis used during development. In addition to the REST API, the backend also uses Socket.IO to enable real time communication between clients, allowing for live updates and interactive gameplay decisions between players.
 
 ---
 
@@ -51,38 +48,46 @@ The Node.js backend uses **Express** to expose REST API endpoints and **Socket.I
   - `CMD ["node", "index.js"]`
     - Runs the main backend server file.
 
-- Running `docker compose up --build` runs the React frontend and Node.js backend in separate containers with mapped ports, allowing them to communicate internally and be accessed externally from a browser.
+- Running `startup.sh` starts the entire application automatically by executing `docker compose up --build`. Instead of building everything locally, the system pulls prebuilt Docker images from Docker Hub and uses them to create and run the React frontend and Node.js backend in separate containers. These containers have their ports mapped so they can communicate internally through Docker networking while still being accessible externally through a web browser.
 
 ---
 
 ## Networking
 
-- Docker Compose automatically creates a **bridge network** for all services defined in the `docker-compose.yml` file.
-- Containers on the same network can communicate using their **service names** as hostnames.  
+- Docker Compose automatically creates a bridge network for all services in the `docker-compose.yml` file, allowing containers to communicate with each other internally. Services can reference each other using their service names as hostnames, with Docker handling internal DNS resolution so no IP addresses are needed.
 
-  For example:
-  - React frontend can call the Node backend at:  
-    ```text
-    http://server:5000/api/test
-    ```
-    Here, `server` is the **service name** defined in `docker-compose.yml`.
-
-- Docker handles **internal DNS resolution**, so you don’t need to use IP addresses.  
-- Ports exposed in the Dockerfiles (`3000` for React, `5000` for Node) are mapped to host ports via `docker-compose.yml`:
-
-
-**External access (in browser):**  
-  You can access your containers from a browser using the hostname and the mapped ports defined in `docker-compose.yml`.
-
-  For example:
-  - User can access React frontend from browser using:  
-    ```text
-    http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/
-    ```
-  
+- Ports defined in `docker-compose.yml` expose the containers to the host machine, enabling external browser access. The React frontend runs on port `3000` and can be accessed through the CloudLab node’s public URL, such as `http://docker.teburke-297341.cloud-edu-pg0.clemson.cloudlab.us:3000/`, while still communicating internally with the backend.
 
 ```yaml
 ports:
   - "3000:3000"  # React frontend
   - "5000:5000"  # Node backend
+```
+
+---
+
+## Instructions
+
+1. **Start a CloudLab Experiment**
+
+Before running this project, you must create and start a CloudLab experiment using `profile.py`. Once the experiment is ready SSH into the experiment.
+
+2. **Clone the repository:**
+```bash
+git clone https://github.com/teburke111/BattleShip.git
+```
+
+3. **Change into project directory:**
+```bash
+cd BattleShip
+```
+
+4. **Run deployment Script**
+```bash
+./startup.sh
+```
+
+5. **Access Front End**
+- Access your website at: `http://<NODE_IP>:<NODEPORT>`
+
 

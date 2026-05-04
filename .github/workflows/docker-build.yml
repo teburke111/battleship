@@ -1,0 +1,34 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    paths:
+      - "client/**"
+      - "server/**"
+      - ".github/workflows/docker-build.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build client image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/react_client:latest ./client
+
+      - name: Push client image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/react_client:latest
+
+      - name: Build server image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/node_server:latest ./server
+
+      - name: Push server image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/node_server:latest
