@@ -94,6 +94,6 @@ cd BattleShip
 
 ## Demo Video
 
-https://raw.githubusercontent.com/teburke111/BattleShip/main/demovideo.mp4
+https://raw.githubusercontent.com/teburke111/BattleShip/main/DemoVideo.mp4
 
 
